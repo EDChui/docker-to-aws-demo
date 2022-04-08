@@ -1,10 +1,12 @@
-# https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
+# Ref: https://docs.aws.amazon.com/lambda/latest/dg/images-create.html
+FROM public.ecr.aws/lambda/python:3.9
 
-COPY ./requirements.txt /app/requirements.txt
+WORKDIR ${LAMBDA_TASK_ROOT}
 
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+COPY /requirements.txt ./requirements.txt
 
-COPY ./app /app
+RUN pip install --no-cache-dir --upgrade -r ./requirements.txt
 
-EXPOSE 80
+COPY /app ./
+
+CMD ["main.handler"]

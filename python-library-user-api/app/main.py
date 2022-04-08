@@ -1,4 +1,6 @@
 from fastapi import FastAPI, HTTPException
+from mangum import Mangum
+
 from userDatabase import UserDatabase
 import schema
 
@@ -33,3 +35,6 @@ def deleteUser(id: int):
 def addBookToUser(id: int, book: schema.Book):
 	success = UserDatabase().addBookToUser(id, book)
 	return {"success": success}
+
+# Handler for deploying to AWS lambda.
+handler = Mangum(app)
