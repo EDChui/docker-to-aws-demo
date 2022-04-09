@@ -22,8 +22,8 @@ public class BookDatabaseController {
     }
 
     @GetMapping("/books")
-    public List<? extends Book> getAllBooks() {
-        return BookDatabase.getInstance().getAllBooks();
+    public BookList getAllBooks() {
+        return new BookList(BookDatabase.getInstance().getAllBooks());
     }
 
     @GetMapping("/books/{id}")
@@ -37,8 +37,8 @@ public class BookDatabaseController {
     }
 
     @DeleteMapping("/books/{id}")
-    public Message deleteBook(@PathVariable int id) {
+    public Success deleteBook(@PathVariable int id) {
         BookDatabase.getInstance().deleteBook(id);
-        return new Message("Success.");
+        return new Success(true);
     }
 }

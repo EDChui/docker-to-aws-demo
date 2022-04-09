@@ -48,20 +48,22 @@ Endpoint
 Response
 
 ```json
-[
-  {
-    "isbn": "1792901690",
-    "name" : "Discrete Mathematics: An Open Introduction",
-    "author": "Oscar Levin",
-    "id": 0
-  },
-  {
-    "isbn": "9780262033848",
-    "name" : "Introduction to Algorithms",
-    "author": "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein",
-    "id": 1
-  }
-]
+{
+  "books" : [
+    {
+      "isbn": "1792901690",
+      "name" : "Discrete Mathematics: An Open Introduction",
+      "author": "Oscar Levin",
+      "id": 0
+    },
+    {
+      "isbn": "9780262033848",
+      "name" : "Introduction to Algorithms",
+      "author": "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein",
+      "id": 1
+    }
+  ]
+}
 ```
 
 ### Get Book by ID
@@ -99,6 +101,6 @@ Response
 
 ```json
 {
-  "message": "Success."
+  "success": true
 }
 ```
