@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  book:
+    build:
+      context: "./java-book-api/"
+      dockerfile: Dockerfile
+    container_name: "book_service"
+    ports:
+      - "8080:8080"
+
+  library_user:
+    build:
+      context: "./python-library-user-api/"
+      dockerfile: Dockerfile
+    container_name: "user_service"
+    ports:
+      - "8090:80"
