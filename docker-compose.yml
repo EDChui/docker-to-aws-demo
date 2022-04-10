@@ -2,17 +2,23 @@ version: "3.8"
 
 services:
   book:
+    container_name: "book_service"
     build:
       context: "./java-book-api/"
       dockerfile: Dockerfile
-    container_name: "book_service"
     ports:
       - "8080:8080"
 
   library_user:
+    container_name: "user_service"
+    depends_on:
+      - book
     build:
       context: "./python-library-user-api/"
       dockerfile: Dockerfile
-    container_name: "user_service"
+    environment:
+      - BOOK_API_BASE_URL=http://book:8080
+    links:
+      - book
     ports:
       - "8090:80"

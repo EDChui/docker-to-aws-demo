@@ -1,13 +1,24 @@
 # Java Book API
 
-## Description
+# Table of Content
+
+- [Java Book API](#java-book-api)
+- [Table of Content](#table-of-content)
+- [Description](#description)
+- [APIs](#apis)
+  - [Add Book](#add-book)
+  - [Get Book List](#get-book-list)
+  - [Get Book by ID](#get-book-by-id)
+  - [Delete Book by ID](#delete-book-by-id)
+
+# Description
 
 In the demo, this API written in Java can be considered as some code that must use libraries from other languages, or 
 simply some legacy code in the organisation.
 
-## API Lists
+# APIs
 
-### Add Book
+## Add Book
 
 Method
 
@@ -35,7 +46,7 @@ Response
 }
 ```
 
-### Get Book List
+## Get Book List
 
 Method
 
@@ -66,7 +77,7 @@ Response
 }
 ```
 
-### Get Book by ID
+## Get Book by ID
 
 Method
 
@@ -87,7 +98,7 @@ Response
 }
 ```
 
-### Delete Book by ID
+## Delete Book by ID
 
 Method
 

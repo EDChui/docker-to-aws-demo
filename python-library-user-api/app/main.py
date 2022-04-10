@@ -1,4 +1,7 @@
 from fastapi import FastAPI, HTTPException
+import os
+import requests
+import random
 
 from userDatabase import UserDatabase
 import schema
@@ -33,4 +36,15 @@ def deleteUser(id: int):
 @app.post("/users/{id}/books")
 def addBookToUser(id: int, book: schema.Book):
 	success = UserDatabase().addBookToUser(id, book)
+	return {"success": success}
+
+@app.post("/users/{id}/books/random")
+def addRandomBookToUser(id: int):
+	session = requests.Session()
+	session.trust_env = False
+	requestResult = session.get(os.getenv("BOOK_API_BASE_URL")+"/books")
+	if requestResult.status_code != 200:
+		return {"success": False}
+	bookList = requestResult.json()["books"]
+	success = UserDatabase().addBookToUser(id, random.choice(bookList))
 	return {"success": success}
