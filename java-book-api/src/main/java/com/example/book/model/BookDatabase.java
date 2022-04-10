@@ -3,6 +3,7 @@ package com.example.book.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * A class that act as an actual database.
@@ -40,7 +41,7 @@ public class BookDatabase {
     public List<BookWithId> getAllBooks() {
         return bookMap.entrySet().stream()
                 .map(b -> new BookWithId(b.getKey(), b.getValue()))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public void deleteBook(int id) {
