@@ -5,6 +5,7 @@
 - [Java Book API](#java-book-api)
 - [Table of Content](#table-of-content)
 - [Description](#description)
+- [Languages and Framework Used](#languages-and-framework-used)
 - [APIs](#apis)
   - [Add Book](#add-book)
   - [Get Book List](#get-book-list)
@@ -13,8 +14,20 @@
 
 # Description
 
-In the demo, this API written in Java can be considered as some code that must use libraries from other languages, or 
-simply some legacy code in the organisation.
+In the demo, this API written in Java handles the service related to the books of a library.
+
+This API can be considered as some code that must use libraries from other languages, or some legacy code, or some other services in a project.
+
+To run this server individually, just execute
+
+  RestServiceApplication::main
+
+The webserver will be running on `http://localhost:8080` by default.
+
+# Languages and Framework Used
+
+- Java 11
+- [Spring Boot 2.6.6](https://spring.io/projects/spring-boot)
 
 # APIs
 

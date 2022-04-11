@@ -1,0 +1,35 @@
+# Using using this Dockerfile, the application can be used after the Docker image is built and deployed.
+# No gradle clean build is required in prior.
+# Commands: 
+# Build docker image: docker build -f <this_dockerfile_name> -t <image_name> .
+# Deploy container: docker run -d --name <container_name> -p 8080:8080 <image_name>
+# The application will run on http://localhost:8080 after deploy.
+
+# Ref: https://medium.com/geekculture/docker-basics-and-easy-steps-to-dockerize-spring-boot-application-17608a65f657
+# Ref: https://codestijl.dev/2020/09/14/a-gradle-build-in-docker/
+ARG BUILD_HOME=/book_api
+
+# Gradle image for the build stage.
+FROM gradle:jdk11 AS build-image
+
+# Set working directory.
+ARG BUILD_HOME
+ENV APP_HOME=${BUILD_HOME}
+WORKDIR ${APP_HOME}
+
+# Copy Gradle configureations.
+COPY --chown=gradle:gradle . ${BUILD_HOME}
+
+# Build application.
+RUN gradle clean build --no-daemon
+
+# Java image for the application to run in.
+FROM adoptopenjdk/openjdk11
+
+ARG BUILD_HOME
+ENV APP_HOME=${BUILD_HOME}
+COPY --from=build-image ${APP_HOME}/build/libs/*.jar app.jar
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "app.jar"]

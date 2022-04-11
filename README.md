@@ -5,9 +5,9 @@
 - [Demonstration of Deploying Multiple API Servers with Docker and AWS Lambda](#demonstration-of-deploying-multiple-api-servers-with-docker-and-aws-lambda)
 - [Table of Content](#table-of-content)
 - [Description](#description)
-- [Project Configurations](#project-configurations)
+- [Project Configurations and Framework Used](#project-configurations-and-framework-used)
 - [Guide](#guide)
-	- [Step 1 - Clean & Build the required Java file for Building a Docker Image](#step-1---clean--build-the-required-java-file-for-building-a-docker-image)
+	- [Step 1 - Build the required Java file for Building a Docker Image](#step-1---build-the-required-java-file-for-building-a-docker-image)
 	- [Step 2 - Run `docker-compose`](#step-2---run-docker-compose)
 		- [Details of `docker-compose.yml`](#details-of-docker-composeyml)
 
@@ -15,10 +15,10 @@
 
 The purpose of this branch is to demonstrate how to use `docker-compose` to build and deploys multiple API servers in a local environment at the same time.
 
-# Project Configurations
+# Project Configurations and Framework Used
 
 - Java 11
-  - Uses [Spring Boot](https://spring.io/) to develop the APIs (`java-book-api`)
+  - Uses [Spring Boot](https://spring.io/projects/spring-boot) to develop the APIs (`java-book-api`)
 - Python 3.9
   - Uses [FastAPI](https://fastapi.tiangolo.com/) to develop the APIs (`python-library-user-api`)
 
@@ -26,9 +26,9 @@ The purpose of this branch is to demonstrate how to use `docker-compose` to buil
 
 # Guide
 
-## Step 1 - Clean & Build the required Java file for Building a Docker Image
+## Step 1 - Build the required Java file for Building a Docker Image
 
-We first need to clean and build the required `.jar` files for building a docker image for the `book` APIs.
+We first need to use Gradle to clean build the required `.jar` files for building a docker image for the `book` APIs.
 
 As in the `/java-book-api/Dockerfile`, we have to copy those `.jar` files for building a Docker Image.
 
@@ -36,6 +36,8 @@ As in the `/java-book-api/Dockerfile`, we have to copy those `.jar` files for bu
 
 It can be done in IntelliJ under the Gradle Project.
 ![Clean and build Gradle project](./doc/images/gradle-clean-and-build.jpg)
+
+Alternatively, we can configure the `docker-compose.yml` that the service `book` is built from `Dockerfile.noNeedPrebuilt` instead `Dockerfile`, then there is no need to preform a Gradle build as the build will be performed when building the Docker image each time. Note that this method will take a longer time for building the Docker image.  
 
 ## Step 2 - Run `docker-compose`
 
