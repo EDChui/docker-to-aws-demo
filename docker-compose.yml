@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  book:
+    image: "library-book"
+    container_name: "book_service"
+    build:
+      context: "./java-book-api/"
+      dockerfile: Dockerfile
+
+  user:
+    image: "library-user"
+    container_name: "user_service"
+    build:
+      context: "./python-library-user-api/"
+      dockerfile: Dockerfile
+  

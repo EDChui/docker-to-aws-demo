@@ -11,11 +11,6 @@ import java.util.List;
 
 @RestController
 public class BookDatabaseController {
-    @GetMapping("/")
-    public Message root() {
-        return new Message("App is running.");
-    }
-
     @PostMapping("/books")
     public Id addBook(@RequestBody Book book) {
         return new Id(BookDatabase.getInstance().addBook(book));
